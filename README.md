@@ -1,99 +1,112 @@
 # 📘 Parameterized LLM-Based Assessment Generation
 
-## 🔹 Εισαγωγή
+## 🔹 Introduction
 
-Πριν προχωρήσουμε στην ανάλυση των παρακάτω κωδίκων, είναι σημαντικό να παρουσιαστούν συνοπτικά τα βασικά βήματα που απαιτούνται για την εκτέλεσή τους. Όλοι οι κώδικες έχουν υλοποιηθεί στη γλώσσα προγραμματισμού Python, επομένως απαιτείται η εγκατάσταση ενός κατάλληλου περιβάλλοντος ανάπτυξης, όπως το PyCharm ή το Visual Studio Code. Επιπλέον, είναι απαραίτητη η εγκατάσταση των κατάλληλων βιβλιοθηκών (π.χ. OpenAI, PyPDF2, καθώς και βιβλιοθήκες για μαθηματικούς υπολογισμούς και οπτικοποίηση), καθώς και η ύπαρξη έγκυρου API key για την πρόσβαση στις υπηρεσίες του OpenAI. Τέλος, τα αρχεία εισόδου (όπως .txt ή .pdf) θα πρέπει να βρίσκονται στον ίδιο φάκελο με τον κώδικα.
+Before proceeding with the analysis of the following code files, it is important to briefly outline the basic steps required for their execution. All scripts are implemented in Python, therefore a suitable development environment such as PyCharm or Visual Studio Code is required. 
 
----
-
-## 🔹 Περιγραφή Έργου
-
-Η παρούσα εργασία παρουσιάζει μια δομημένη προσέγγιση για τη δημιουργία εκπαιδευτικού υλικού αξιολόγησης με τη χρήση Μεγάλων Γλωσσικών Μοντέλων (LLMs).
-
-Αντί για αποσπασματική χρήση εντολών (prompting), εφαρμόζεται μια **παραμετροποιημένη διαδικασία (pipeline)**, η οποία επιτρέπει τον έλεγχο της παραγωγής περιεχομένου μέσω συγκεκριμένων παραμέτρων, όπως:
-
-- Αριθμός ερωτήσεων  
-- Επίπεδο δυσκολίας  
-- Κοινό-στόχος  
-- Γνωστικό αντικείμενο  
-
-Με αυτόν τον τρόπο, το παραγόμενο υλικό είναι:
-- Συνεπές  
-- Επαναλήψιμο  
-- Παιδαγωγικά ευθυγραμμισμένο  
-
-Τα LLMs λειτουργούν ως ελεγχόμενα εργαλεία παραγωγής και όχι ως αυτόνομοι δημιουργοί περιεχομένου, κάτι ιδιαίτερα σημαντικό σε τεχνικά πεδία, όπως η Μηχανική Μάθηση.
+Additionally, the installation of the necessary libraries (e.g., OpenAI, PyPDF2, as well as libraries for mathematical computation and visualization) is required, along with a valid API key to access OpenAI services. Finally, input files (such as `.txt` or `.pdf`) should be located in the same directory as the code.
 
 ---
+
+## 🔹 Project Description
+
+This project presents a structured approach for generating assessment-oriented educational material using Large Language Models (LLMs).
+
+Instead of relying on ad hoc prompting, a **parameterized pipeline** is applied, allowing controlled content generation through explicitly defined parameters such as:
+
+- Number of questions  
+- Difficulty level  
+- Target audience  
+- Domain  
+
+In this way, the generated material is:
+
+- Consistent  
+- Repeatable  
+- Pedagogically aligned  
+
+LLMs are used as controlled generation tools rather than autonomous content creators, which is particularly important in technical domains such as Machine Learning.
+
 ---
 
 ## 🔹 Conceptual Workflow (Pipeline Overview)
 
-Η διαδικασία που ακολουθείται σε αυτή την εργασία δεν είναι απλώς μια σειρά βημάτων εκτέλεσης, αλλά ένα **παραμετροποιημένο pipeline παραγωγής εκπαιδευτικού υλικού**.
+The process followed in this project is not simply a sequence of execution steps, but a **parameterized pipeline for generating educational assessment material**.
 
-Συγκεκριμένα, το σύστημα βασίζεται στα εξής στάδια:
+Specifically, the system is based on the following stages:
 
 1. **Parameter Specification**  
-   Ορίζονται ρητά οι παράμετροι (Q, A, CA, DL, TGA, DOM), οι οποίες καθορίζουν τη δομή και το επίπεδο της αξιολόγησης.
+   The parameters (Q, A, CA, DL, TGA, DOM) are explicitly defined, determining the structure and difficulty of the assessment.
 
 2. **Prompt Construction**  
-   Οι παράμετροι ενσωματώνονται σε ένα **δομημένο prompt template**, το οποίο λειτουργεί ως διεπαφή μεταξύ χρήστη και LLM.  
-   Το prompt περιλαμβάνει σαφείς οδηγίες, περιορισμούς και format εξόδου.
+   The parameters are embedded into a **structured prompt template**, which serves as the interface between the user and the LLM.  
+   The prompt includes clear instructions, constraints, and output format requirements.
 
 3. **Constrained Generation (LLM Execution)**  
-   Το LLM χρησιμοποιείται ως **conditional generator**, δηλαδή παράγει περιεχόμενο αυστηρά βάσει των περιορισμών που έχουν τεθεί και όχι ως αυτόνομος δημιουργός.
+   The LLM is used as a **conditional generator**, meaning it produces content strictly based on the defined constraints rather than acting as an autonomous creator.
 
 4. **Output Structuring**  
-   Το παραγόμενο υλικό ακολουθεί συγκεκριμένη μορφή (π.χ. αριθμημένες ερωτήσεις, επιλογές απαντήσεων, μία σωστή απάντηση, χωρίς επεξηγήσεις).
+   The generated material follows a predefined format:
+   - Numbered questions  
+   - Answer options  
+   - One correct answer  
+   - No explanations  
 
 5. **Evaluation & Iteration**  
-   Τα αποτελέσματα αξιολογούνται και, εφόσον χρειάζεται, γίνεται επανατροφοδότηση μέσω τροποποίησης παραμέτρων ή prompt.
+   The results are evaluated and, if necessary, refined through parameter adjustments or prompt improvements.
 
-Η παραπάνω διαδικασία εξασφαλίζει:
-- Έλεγχο (control)
-- Επαναληψιμότητα (repeatability)
-- Διαφάνεια (transparency)
+This process ensures:
+- Control  
+- Repeatability  
+- Transparency  
 
+---
 
+> The following steps describe the practical implementation workflow of the proposed parameterized pipeline, guiding the user from environment setup to controlled assessment generation and evaluation using an LLM.
 
-## 🔹 Διαδικασία Χρήσης
+---
 
-Ακολουθήστε τα παρακάτω βήματα:
+## 🔹 Usage Process
 
-### 1. Εγκατάσταση εργαλείων
-- Python (έκδοση 3.10 ή νεότερη)
+Follow the steps below:
+
+### 1. Install Required Tools
+
+- Python (version 3.10 or later)  
 - IDE:
-  - PyCharm (προτεινόμενο)
-  - ή Visual Studio Code
+  - PyCharm (recommended)  
+  - or Visual Studio Code  
 
-### 2. Δημιουργία Virtual Environment (προαιρετικό)
+---
+
+### 2. Create a Virtual Environment (Optional)
+
 ```bash
 python -m venv venv
 
-Ενεργοποίηση:
+Activate it:
 
 macOS / Linux
-
 source venv/bin/activate
-
 
 Windows
 
 venv\Scripts\activate
 
-3. Εγκατάσταση βιβλιοθηκών
+3. Install Dependencies
 pip install -r requirements.txt
+4. Configure API Key
 
-4. Ρύθμιση API Key
-# macOS / Linux
+macOS / Linux
+
 export API_KEY="your_api_key_here"
 
-# Windows
+Windows
+
 set API_KEY=your_api_key_here
+5. Define Parameters
 
-5. Ορισμός Παραμέτρων
-
-Παράδειγμα:
+Example:
 
 Q = 10
 A = 4
@@ -101,94 +114,102 @@ CA = 1
 DL = 3
 TGA = "university-level learners"
 DOM = "Machine Learning Optimization (Steepest Descent)"
-
-6. Εκτέλεση προγράμματος
+6. Run the Program
 python main.py
+7. Evaluate Results
 
-7. Αξιολόγηση αποτελεσμάτων
+Check clarity of questions
 
-Έλεγχος σαφήνειας ερωτήσεων
+Verify correctness of answers
 
-Επιβεβαίωση σωστών απαντήσεων
+Ensure appropriate difficulty level
 
-Έλεγχος επιπέδου δυσκολίας
+Confirm that there is exactly one correct answer
 
-Επαλήθευση ότι υπάρχει μία σωστή απάντηση
+8. Optimization
 
-8. Βελτιστοποίηση
+Adjust parameters
 
-Τροποποίηση παραμέτρων
+Improve prompt structure
 
-Βελτίωση prompt
+Add domain-specific reference material
 
-Προσθήκη υλικού αναφοράς
-
-🔹 Περιγραφή Κωδίκων
+🔹 Code Description
 ✅ API_Conf_DS_2025.py
 
-Διαβάζει το αρχείο prompt.txt
+Reads the prompt.txt file
 
-Στέλνει δεδομένα στο μοντέλο gpt-4o-mini
+Sends data to the gpt-4o-mini model
 
-Λαμβάνει την απόκριση
+Receives the response
 
-Αποθηκεύει το αποτέλεσμα στο output.txt
+Saves the output to output.txt
 
-Εμφανίζει μήνυμα επιτυχίας
+Displays a success message
 
 ✅ API_PDF.py
 
-Διαβάζει το document.pdf
+Reads document.pdf
 
-Εξάγει το περιεχόμενο με PyPDF2
+Extracts content using PyPDF2
 
-Δημιουργεί ερωτήσεις πολλαπλής επιλογής στα Ελληνικά
+Generates multiple-choice questions in Greek
 
-Περιλαμβάνει:
+Includes:
 
-Πολλαπλές απαντήσεις
+Multiple answer options
 
-Μία σωστή απάντηση
+One correct answer
 
-Κατηγοριοποίηση δυσκολίας
+Difficulty categorization
 
-Αποθηκεύει στο output.txt
+Saves output to output.txt
 
 ✅ Steepest_Descent.py
 
-Υλοποιεί τον αλγόριθμο Steepest Descent
+Implements the Steepest Descent algorithm.
 
-Ζητά:
+Inputs:
 
-Αρχικό σημείο
+Initial point
 
-Συνάρτηση
+Function
 
 Learning rate
 
-Κριτήρια τερματισμού
+Termination criteria
 
-Τερματισμός όταν:
+Stops when:
 
-Η κλίση γίνει πολύ μικρή
+Gradient becomes very small
 
-Οι μεταβολές είναι αμελητέες
+Changes are negligible
 
-Ξεπεραστεί το όριο επαναλήψεων
+Maximum iterations are exceeded
 
-Παράγει:
+Outputs:
 
-Σημείο ελάχιστου
+Minimum point
 
-Τιμή συνάρτησης
+Function value
 
-Αριθμό επαναλήψεων
+Number of iterations
 
 3D plots
 
 2D contour plots
 
-🔹 Εργαλεία που χρησιμοποιήθηκαν
+🔹 Example Sets
+
+The repository includes two example assessment sets:
+
+Set 1
+
+Set 2
+
+These demonstrate how the parameterized pipeline generates assessment material under controlled configurations.
+
+🔹 Tools Used
 
 ChatGPT 🤖
 
@@ -196,10 +217,10 @@ GitHub Copilot 💡
 
 DeepSeek 🔍
 
-Τα εργαλεία αυτά χρησιμοποιήθηκαν για:
+These tools were used for:
 
-Ανάπτυξη
+Development
 
-Κατανόηση
+Understanding
 
-Βελτιστοποίηση κώδικα
+Code optimization
