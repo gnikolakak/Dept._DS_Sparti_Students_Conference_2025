@@ -245,3 +245,11 @@ These tools were used for:
 - Understanding
 
 - Code optimization
+
+
+
+## 🔹 Additional Notes
+
+- The pipeline is model-agnostic and can be applied to different LLM backends for comparative evaluation.
+- In technical domains, strict correctness and adherence to formal definitions are critical, as even minor inaccuracies may lead to misconceptions.
+- Optional supplementary material (e.g., theory, notes, or definitions) can be provided to the model to improve conceptual grounding and output quality.
