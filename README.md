@@ -216,6 +216,8 @@ Implements the Steepest Descent algorithm.
 
 - 2D contour plots
 
+---
+
 ## 🔹 Example Sets
 
 The repository includes two example assessment sets:
@@ -225,6 +227,8 @@ The repository includes two example assessment sets:
 - Set 2
 
 These demonstrate how the parameterized pipeline generates assessment material under controlled configurations.
+
+---
 
 ## 🔹 Tools Used
 
