@@ -81,146 +81,161 @@ Follow the steps below:
 
 ### 2. Create a Virtual Environment (Optional)
 
-```bash
+```
 python -m venv venv
+```
 
-Activate it:
+**Activate it**:
 
-macOS / Linux
+- **macOS / Linux**
+```
 source venv/bin/activate
+```
 
-Windows
-
+- **Windows**
+```
 venv\Scripts\activate
+```
 
-3. Install Dependencies
+### 3. Install Dependencies
+```
 pip install -r requirements.txt
-4. Configure API Key
+```
 
-macOS / Linux
+### 4. Configure API Key
 
+**macOS / Linux**
+```
 export API_KEY="your_api_key_here"
+```
 
-Windows
-
+**Windows**
+```
 set API_KEY=your_api_key_here
-5. Define Parameters
+```
+
+### 5. Define Parameters
 
 Example:
-
+```
 Q = 10
 A = 4
 CA = 1
 DL = 3
 TGA = "university-level learners"
 DOM = "Machine Learning Optimization (Steepest Descent)"
-6. Run the Program
+```
+
+### 6. Run the Program
+```
 python main.py
-7. Evaluate Results
+```
+### 7. Evaluate Results
 
-Check clarity of questions
+- Check clarity of questions
 
-Verify correctness of answers
+- Verify correctness of answers
 
-Ensure appropriate difficulty level
+- Ensure appropriate difficulty level
 
-Confirm that there is exactly one correct answer
+- Confirm that there is exactly one correct answer
 
-8. Optimization
+### 8. Optimization
 
-Adjust parameters
+- Adjust parameters
 
-Improve prompt structure
+- Improve prompt structure
 
-Add domain-specific reference material
+- Add domain-specific reference material
 
-🔹 Code Description
-✅ API_Conf_DS_2025.py
+## 🔹 Code Description
 
-Reads the prompt.txt file
+### ✅ API_Conf_DS_2025.py
 
-Sends data to the gpt-4o-mini model
+- Reads the `prompt.txt` file
 
-Receives the response
+- Sends data to the `gpt-4o-mini` model
 
-Saves the output to output.txt
+- Receives the response
 
-Displays a success message
+- Saves the output to `output.txt`
 
-✅ API_PDF.py
+- Displays a success message
 
-Reads document.pdf
+### ✅ API_PDF.py
 
-Extracts content using PyPDF2
+- Reads `document.pdf`
 
-Generates multiple-choice questions in Greek
+- Extracts content using `PyPDF2`
 
-Includes:
+- Generates multiple-choice questions in Greek
 
-Multiple answer options
+- Includes:
 
-One correct answer
+   - Multiple answer options
 
-Difficulty categorization
+   - One correct answer
 
-Saves output to output.txt
+   - Difficulty categorization
 
-✅ Steepest_Descent.py
+- Saves output to `output.txt`
+
+### ✅ Steepest_Descent.py
 
 Implements the Steepest Descent algorithm.
 
-Inputs:
+**Inputs**:
 
-Initial point
+- Initial point
 
-Function
+- Function
 
-Learning rate
+- Learning rate
 
-Termination criteria
+- Termination criteria
 
-Stops when:
+**Stops when**:
 
-Gradient becomes very small
+- Gradient becomes very small
 
-Changes are negligible
+- Changes are negligible
 
-Maximum iterations are exceeded
+- Maximum iterations are exceeded
 
-Outputs:
+**Outputs**:
 
-Minimum point
+- Minimum point
 
-Function value
+- Function value
 
-Number of iterations
+- Number of iterations
 
-3D plots
+- 3D plots
 
-2D contour plots
+- 2D contour plots
 
-🔹 Example Sets
+## 🔹 Example Sets
 
 The repository includes two example assessment sets:
 
-Set 1
+- Set 1
 
-Set 2
+- Set 2
 
 These demonstrate how the parameterized pipeline generates assessment material under controlled configurations.
 
-🔹 Tools Used
+## 🔹 Tools Used
 
-ChatGPT 🤖
+- ChatGPT 🤖
 
-GitHub Copilot 💡
+- GitHub Copilot 💡
 
-DeepSeek 🔍
+- DeepSeek 🔍
 
 These tools were used for:
 
-Development
+- Development
 
-Understanding
+- Understanding
 
-Code optimization
+- Code optimization
