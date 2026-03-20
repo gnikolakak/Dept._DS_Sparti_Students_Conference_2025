@@ -1,206 +1,140 @@
-Before proceeding with the analysis of the following codes, it is important to briefly outline the basic steps required for their execution. First, all codes have been implemented using the Python programming language; therefore, it is necessary to install an appropriate development environment, such as PyCharm or Visual Studio Code. Additionally, the required libraries (such as OpenAI, PyPDF2, as well as libraries for mathematical computations and visualization) must be installed to ensure the smooth execution of the programs. Furthermore, a valid API key is required to access OpenAI services, along with the necessary input files (such as .txt or .pdf files) located in the same directory as the code.
+🔹 Εισαγωγή
 
+Πριν προχωρήσουμε στην ανάλυση των παρακάτω κωδίκων, είναι σημαντικό να παρουσιαστούν συνοπτικά τα βασικά βήματα που απαιτούνται για την εκτέλεσή τους. Όλοι οι κώδικες έχουν υλοποιηθεί στη γλώσσα προγραμματισμού Python, επομένως απαιτείται η εγκατάσταση ενός κατάλληλου περιβάλλοντος ανάπτυξης, όπως το PyCharm ή το Visual Studio Code. Επιπλέον, είναι απαραίτητη η εγκατάσταση των κατάλληλων βιβλιοθηκών (π.χ. OpenAI, PyPDF2, καθώς και βιβλιοθήκες για μαθηματικούς υπολογισμούς και οπτικοποίηση), καθώς και η ύπαρξη έγκυρου API key για την πρόσβαση στις υπηρεσίες του OpenAI. Τέλος, τα αρχεία εισόδου (όπως .txt ή .pdf) θα πρέπει να βρίσκονται στον ίδιο φάκελο με τον κώδικα.
 
+🔹 Περιγραφή Έργου
 
----------------------------------
+Η παρούσα εργασία παρουσιάζει μια δομημένη προσέγγιση για τη δημιουργία εκπαιδευτικού υλικού αξιολόγησης με τη χρήση Μεγάλων Γλωσσικών Μοντέλων (LLMs).
 
+Αντί για αποσπασματική χρήση εντολών (prompting), εφαρμόζεται μια παραμετροποιημένη διαδικασία (pipeline), η οποία επιτρέπει τον έλεγχο της παραγωγής περιεχομένου μέσω συγκεκριμένων παραμέτρων, όπως:
 
-# Parameterized LLM-Based Assessment Generation
+Αριθμός ερωτήσεων
 
-## Introduction
+Επίπεδο δυσκολίας
 
-This project presents a structured approach for generating assessment-oriented educational material using Large Language Models (LLMs).
+Κοινό-στόχος
 
-Instead of relying on ad hoc prompting, this method introduces a **parameterized pipeline** that controls how assessment content is generated. By explicitly defining parameters such as the number of questions, difficulty level, target audience, and domain, the system ensures that the generated material is **consistent, repeatable, and pedagogically aligned**.
+Γνωστικό αντικείμενο
 
-The core idea is to treat LLMs not as autonomous content creators, but as **conditional generators operating within a clearly defined framework**. This is especially important in technical domains (e.g., machine learning), where accuracy, structure, and conceptual clarity are essential.
+Με αυτόν τον τρόπο, το παραγόμενο υλικό είναι:
 
----
+Συνεπές
 
-## How to Use
+Επαναλήψιμο
 
-Follow the steps below to set up and use the system.
+Παιδαγωγικά ευθυγραμμισμένο
 
-### 1. Install Required Tools
+Τα LLMs λειτουργούν ως ελεγχόμενα εργαλεία παραγωγής και όχι ως αυτόνομοι δημιουργοί περιεχομένου, κάτι ιδιαίτερα σημαντικό σε τεχνικά πεδία, όπως η Μηχανική Μάθηση.
 
-- Install **Python (version 3.10 or later)**
-- Install an IDE:
-  - Recommended: **PyCharm**
-  - Alternative: VS Code
+🔹 Διαδικασία Χρήσης
 
----
+Για τη χρήση του συστήματος, ακολουθούνται τα εξής βήματα:
 
-### 2. Clone or Download the Repository
+Εγκατάσταση εργαλείων και βιβλιοθηκών
 
-Clone the repository:
+(Προαιρετικά) Δημιουργία virtual environment
 
-```bash
-git clone <repository_url>
-cd <project_folder>
+Ρύθμιση API key για πρόσβαση στο OpenAI
 
-Or download it as a ZIP file and extract it.
+Ορισμός παραμέτρων, όπως:
 
-3. Set Up a Virtual Environment (Recommended)
+Πλήθος ερωτήσεων
 
-Create a virtual environment:
+Αριθμός απαντήσεων
 
-python -m venv venv
+Σωστές απαντήσεις
 
-Activate it:
+Επίπεδο δυσκολίας
 
-macOS / Linux:
+Κοινό-στόχος
 
-source venv/bin/activate
+Θεματική περιοχή
 
-Windows:
+Δημιουργία δομημένου prompt
 
-venv\Scripts\activate
-4. Install Dependencies
+Εκτέλεση του προγράμματος
 
-If a requirements.txt file exists, install dependencies:
+Αξιολόγηση αποτελεσμάτων
 
-pip install -r requirements.txt
-5. Configure API Access
+Βελτιστοποίηση μέσω επανάληψης (iteration)
 
-Set up your LLM provider API key (e.g., OpenAI or another provider).
+🔹 Περιγραφή Κωδίκων
+✅ 1. API_Conf_DS_2025.py
 
-Example using environment variables:
+Διαβάζει το αρχείο prompt.txt
 
-macOS / Linux:
+Στέλνει το περιεχόμενο στο μοντέλο gpt-4o-mini μέσω OpenAI API
 
-export API_KEY="your_api_key_here"
+Λαμβάνει την απόκριση
 
-Windows:
+Αποθηκεύει το αποτέλεσμα στο output.txt
 
-set API_KEY=your_api_key_here
-6. Define the Parameter Configuration
+Εμφανίζει μήνυμα επιτυχούς ολοκλήρωσης
 
-Specify the parameter tuple used for generation:
+✅ 2. API_PDF.py
 
-Q: Number of questions
+Διαβάζει το αρχείο document.pdf μέσω PyPDF2
 
-A: Answer options per question
+Εξάγει το περιεχόμενο του PDF
 
-CA: Correct answers per question
+Δημιουργεί αυτόματα ερωτήσεις πολλαπλής επιλογής στα Ελληνικά
 
-DL: Difficulty level
+Οι ερωτήσεις:
 
-TGA: Target audience
+Έχουν προκαθορισμένο αριθμό απαντήσεων
 
-DOM: Domain
+Περιλαμβάνουν μία σωστή απάντηση
 
-Example:
+Κατηγοριοποιούνται βάσει δυσκολίας
 
-Q = 10
-A = 4
-CA = 1
-DL = 3
-TGA = "university-level learners"
-DOM = "Machine Learning Optimization (Steepest Descent)"
-7. Construct the Prompt
+Αποθηκεύει τα αποτελέσματα στο output.txt
 
-Use the defined parameters to build a structured prompt template.
+✅ 3. Steepest_Descent.py
 
-The prompt should clearly specify:
+Υλοποιεί τον αλγόριθμο Steepest Descent
 
-The task (assessment generation)
+Ζητά από τον χρήστη:
 
-Structural constraints (Q, A, CA)
+Αρχικό σημείο
 
-Target audience
+Συνάρτηση
 
-Domain
+Ρυθμό εκμάθησης
 
-Output format (no explanations, only questions and answers)
+Κριτήρια τερματισμού
 
-8. Run the Generation Process
+Εκτελεί επαναληπτικούς υπολογισμούς με βάση τις παραγώγους
 
-Execute the main script:
+Τερματίζει όταν:
 
-python main.py
+Η κλίση γίνει πολύ μικρή
 
-This will generate a multiple-choice assessment based on the defined parameters.
+Οι μεταβολές είναι αμελητέες
 
-9. Review the Generated Output
+Ξεπεραστεί ο μέγιστος αριθμός επαναλήψεων
 
-Evaluate the generated assessment:
+Παρουσιάζει:
 
-Check clarity of questions
+Το σημείο ελάχιστου
 
-Verify correctness of answers
+Την τιμή της συνάρτησης
 
-Ensure alignment with domain and difficulty level
+Τον αριθμό επαναλήψεων
 
-Confirm only one correct answer per question
+Δημιουργεί:
 
-(Optional but recommended: expert review)
+3D γραφήματα επιφάνειας
 
-10. Iterate and Improve
+2D contour plots
 
-Refine the output by:
+🔹 Εργαλεία που χρησιμοποιήθηκαν
 
-Adjusting parameters (e.g., difficulty level)
+Κατά την ανάπτυξη της εργασίας χρησιμοποιήθηκαν εργαλεία Τεχνητής Νοημοσύνης για υποστήριξη και βελτιστοποίηση του κώδικα:
 
-Improving the prompt structure
+ChatGPT 🤖
 
-Adding domain-specific reference material
+GitHub Copilot 💡
 
-This process is iterative and helps improve output quality over time.
+DeepSeek 🔍
 
-Example Sets
-
-The repository includes two example assessment sets:
-
-Set 1
-
-Set 2
-
-These demonstrate how the parameterized pipeline generates assessment material under controlled configurations.
-
-
-> The following steps describe the practical implementation workflow of the proposed parameterized pipeline, guiding the user from environment setup to controlled assessment generation and evaluation using an LLM.
-
-In the API_Conf_DS_2025.py, the following happens: ✅
-📦 The code first imports the OpenAI library and creates a client object that connects to the OpenAI API, using the API key provided by the user. 🔑🤖
-
-📂 It then attempts to open the file prompt.txt in read mode and read its contents. If the file does not exist, ❌ an error message is displayed and the program terminates. ⚠️
-
-📤 After reading the file content, the program sends this prompt to the OpenAI gpt-4o-mini model via the client.chat.completions.create() method. This method generates a completion response based on the given text, which is stored in the completion variable. 🧠✨
-
-📝 From this response, the program extracts the first message generated by the model and stores it in the output_message variable. It then creates or opens a file named output.txt and writes the model’s response into it. 💾📄
-
-✅ Finally, it displays the message “Output has been written to output.txt” on the console, informing the user that the process was successfully completed and that the requested queries have been generated. 🎉🖥️
-
-In the API_PDF.py, the following happens: ✅
-📄 The code reads the contents of a PDF file named document.pdf, extracting all its text using the PyPDF2 library. If the file is not found, ❌ an error message is displayed and the program terminates. ⚠️
-
-🧠 It then creates a prompt that asks OpenAI’s gpt-4o-mini model to generate 10 multiple-choice questions in Greek, based on the text extracted from the PDF. The questions focus on Artificial Intelligence and Steepest Descent, include 5 possible answers (with one correct answer ✅), and are categorized by difficulty level using a Likert scale from 1 to 5 📊 (1 = very easy, 5 = very difficult, with a predefined distribution across levels).
-
-📤 The program sends this prompt to the OpenAI API via a client object created using the user’s API key 🔑🤖. The model processes the input and generates the requested questions. ✨
-
-💾 The response (i.e. the generated questions and answers) is then saved to an output.txt file, which is created or overwritten if it already exists. 📄📝
-
-✅ Finally, the program displays the message “The questions were saved to the file output.txt” on the console, confirming that the process was successfully completed and that the generated questions are available. 🎉🖥️
-
-
-In the Steepest_Descent.py, the following happens: ✅
-📐 The code implements the Steepest Descent algorithm to find the local minimum of a function of two variables. It first asks the user to provide the initial point (x₀, y₀), the function to minimize, the learning rate, and the termination constants c1, c2, c3. These constants determine when the algorithm stops:
-
-🔹 when the slope becomes very small
-
-🔹 when the distance between consecutive points or the difference in function values is small
-
-🔹 or when the maximum number of iterations is exceeded
-
-🧮 The algorithm then computes the partial derivatives of the function and iteratively updates the points along the steepest descent direction, using the learning rate, while recording all visited points and function values. 🔄📊
-
-⏱️ The process continues until one of the stopping criteria is met or the maximum number of iterations is reached.
-
-📊📈 Finally, the program displays the results, including the minimum point, the corresponding function value, the termination criterion that was satisfied, and the total number of iterations. Additionally, it generates 3D surface plots and 2D contour plots that visually illustrate the path of the algorithm toward the minimum point. 🎯✨
-
-🛠️ Tools used: 🧠📚
-ChatGPT AI tool 🤖 was used for development assistance, explanations, and code support. 💻✨
-
-During development, AI tools such as ChatGPT 🤖 and Co-pilot 💡 were utilized to provide guidance and programming support. 🛠️💻
-
-The implementation was supported by AI tools including ChatGPT 🤖, Co-pilot 🧑‍✈️, and DeepSeek 🔍🧠, which were used for analysis, problem-solving, and code improvement. 🚀✨
+Τα εργαλεία αυτά συνέβαλαν στην κατανόηση, την επίλυση προβλημάτων και τη βελτίωση της συνολικής υλοποίησης.
