@@ -104,12 +104,12 @@ pip install -r requirements.txt
 
 ### 4. Configure API Key
 
-**macOS / Linux**
+- **macOS / Linux**
 ```
 export API_KEY="your_api_key_here"
 ```
 
-**Windows**
+- **Windows**
 ```
 set API_KEY=your_api_key_here
 ```
